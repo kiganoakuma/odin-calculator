@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>ODIN CALCULATOR</title>
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./images/calculator-icon.png" />
+    <title>Odin Calculator</title>
+  </head>
+  <body>
+    <section class="header">Odin Calculator</section>
+    <div class="container">
+      <input type="text" class="result" />
+      <div class="entry-buttons">
+        <div class="first row">
+          <input type="button" name="" value="&radic;" class="global normal" />
+          <input type="button" name="" value="(" class="global normal" />
+          <input type="button" name="" value=")" class="global normal" />
+          <input type="button" name="" value="%" class="global normal" />
+        </div>
+        <div class="second row">
+          <input type="button" name="" value="7" class="global normal" />
+          <input type="button" name="" value="8" class="global normal" />
+          <input type="button" name="" value="9" class="global normal" />
+          <input type="button" name="" value="/" class="global normal" />
+        </div>
+        <div class="third row">
+          <input type="button" name="" value="4" class="global normal" />
+          <input type="button" name="" value="5" class="global normal" />
+          <input type="button" name="" value="6" class="global normal" />
+          <input type="button" name="" value="X" class="global normal" />
+        </div>
+        <div class="fourth row">
+          <input type="button" name="" value="1" class="global normal" />
+          <input type="button" name="" value="2" class="global normal" />
+          <input type="button" name="" value="3" class="global normal" />
+          <input type="button" name="" value="-" class="global normal" />
+        </div>
+        <div class="conflict">
+          <div class="left">
+            <div class="top">
+              <input type="button" name="" value="0" class="big" />
+              <input type="button" name="" value="." class="small" />
+            </div>
+            <div class="bottom">
+              <input
+                type="button"
+                name=""
+                value="Del"
+                class="red small white-text top-margin"
+              />
+              <input
+                type="button"
+                name=""
+                value="="
+                class="green white-text big top-margin"
+              />
+            </div>
+          </div>
+          <div class="right">
+            <input type="button" name="" value="+" class="global grey plus" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer></footer>
 
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>

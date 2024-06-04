@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(79, 79, 130);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    padding: 10px;
+}
+
+
+
+.row {
+    display: flex;
+}
+
+.conflict {
+    display: flex;
+    gap: 2px
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
