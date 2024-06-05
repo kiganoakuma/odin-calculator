@@ -1,60 +1,59 @@
-const allNormalButtons = document.querySelectorAll('.normal');
-const allInputs = document.querySelectorAll('input');
-const rows = document.querySelectorAll('.row');
-const conflictTopLeft = document.querySelector('.top');
-const conflictBottomLeft = document.querySelector('.bottom');
-const small = document.querySelectorAll('.small');
-const big = document.querySelectorAll('.big');
-const plus = document.querySelector('.plus');
-const conflict = document.querySelector('.conflict');
-const left = document.querySelector('.left');
-const buttonContainer = document.querySelector('#entry-buttons')
+const elements = {
+    allNormalButtons: document.querySelectorAll('.normal'),
+    allInputs: document.querySelectorAll('input'),
+    rows: document.querySelectorAll('.row'),
+    conflictTopLeft: document.querySelector('.top'),
+    conflictBottomLeft: document.querySelector('.bottom'),
+    small: document.querySelectorAll('.small'),
+    big: document.querySelectorAll('.big'),
+    plus: document.querySelector('.plus'),
+    conflict: document.querySelector('.conflict'),
+    left: document.querySelector('.left'),
+    buttonContainer: document.querySelector('#entry-buttons')
+};
 
-function countSiblingsElements(element) {
-    const parent = element.parentNode;
-    const children = parent.children;
-    const siblings = Array.from(children).filter((child => child !== element));
-    return siblings.length;
-}
+const dimensions = {
+    width: 300,
+    buttonContainerHeight: 200,
+    gap: 4,
+    leftConflictWidth: (300 * 3) / 4 - 4 * 2,
+    rightConflictWidth: (300 * 3) / 4 - 1
+};
 
-let width = 300;
-let height = 400;
-let buttonContainerHeight = 200;
-let gap = 4;
-let leftConflictWidth = ((width) * 3) / 4 - gap * 2.5;
-let rightConflictWidth = ((width) * 3) / 4 - 1;
+// Calculate normalButtonWidth after defining initial dimensions
+dimensions.normalButtonWidth = (dimensions.width - dimensions.gap * 4) / 4;
 
-buttonContainer.style.height = `${buttonContainerHeight}px`;
-buttonContainer.style.gap = `${gap}px`;
-left.style.gap = `${gap}px`;
+// Apply styles to buttonContainer and left elements
+Object.assign(elements.buttonContainer.style, {
+    height: `${dimensions.buttonContainerHeight}px`,
+});
 
-plus.style.width = `${(width / 4) - (gap * 2)}px`;
+// Apply styles to plus element
+Object.assign(elements.plus.style, {
+    width: `${dimensions.rightConflictWidth}px`,
+});
 
+// Apply styles to inputs
+const inputHeight = (dimensions.buttonContainerHeight - dimensions.gap * 5) / 6;
+elements.allInputs.forEach(input => input.style.height = `${inputHeight}px`);
 
-allInputs.forEach((input) => {
-    input.style.height = `${((buttonContainerHeight - (gap * 5)) / 6)}px`;
-})
-
-rows.forEach((row) => {
+// Apply styles to rows
+elements.rows.forEach(row => {
     row.style.justifyContent = 'space-between';
-    row.style.gap = `${gap}px`;
-})
-
-allNormalButtons.forEach((button) => {
-    button.style.width = `${(width - (gap * (4 ))/ 4)}px`;
-});
-conflict.style.gap = `${gap}px`;
-conflictTopLeft.style.width = `${leftConflictWidth}px`;
-conflictTopLeft.style.gap = `${gap}px`;
-conflictBottomLeft.style.width = `${leftConflictWidth}px`;
-conflictBottomLeft.style.gap = `${gap}px`;
-
-small.forEach((button) => {
-    button.style.width = `${(width) / 4 - (gap)}px`;
 });
 
-big.forEach((button) => {
-    button.style.width = `${((width * 2) / 4 )}px`;
+// Apply styles to normal buttons
+elements.allNormalButtons.forEach(button => button.style.width = `${dimensions.normalButtonWidth}px`);
+
+// Apply styles to conflict elements
+[elements.conflictTopLeft, elements.conflictBottomLeft].forEach(el => {
+    el.style.width = `${dimensions.leftConflictWidth}px`;
 });
 
+// Apply styles to small buttons
+const smallButtonWidth = dimensions.width / 4 - (dimensions.gap - 0.5);
+elements.small.forEach(button => button.style.width = `${smallButtonWidth}px`);
 
+// Apply styles to big buttons
+const bigButtonWidth = dimensions.normalButtonWidth * 2 + dimensions.gap;
+elements.big.forEach(button => button.style.width = `${bigButtonWidth}px`);
