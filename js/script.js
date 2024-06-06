@@ -53,7 +53,7 @@ function elementStyling() {
     //button container
     width: `${dimensions.width}px`,
     height: `${dimensions.widtht}px`,
-    gap: `${gap}px`,
+    gap: `${dimensions.gap}px`,
   });
 
   setStyles(elements.bigButtonsContainer, {
