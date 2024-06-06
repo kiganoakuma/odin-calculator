@@ -1,7 +1,20 @@
+:root {
+    --btn: #696969;
+    --btn-hover: #898989;
+    --btn-red: #d8425b;
+    --btn-red-hover: #ef4a65;
+    --btn-blue: #7155ff;
+    --btn-blue-hover: #7c62ff;
+
+}
+
 * {
+    font-family: "Exo";
     margin: 0;
     padding: 0;
     border: 0;
+    box-sizing: border-box;
+
 }
 
 body {
@@ -9,7 +22,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(178, 178, 178);
+    background-color: rgb(255, 254, 254);
+    padding: 50px;
 }
 
 .header {
@@ -20,9 +34,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: #b8b8b8;
     padding: 10px;
     
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+
 }
 
 .row.big-keys {
@@ -30,19 +50,72 @@ body {
     justify-content: space-between;
 }
 
-.button-container {
+.row.keys{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .row {
     display: flex;
     justify-content: space-between;
 }
+.container,
+button,
+.screen {
+    border-radius: 5px;
+    border: 1.5px solid black;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 4px;
+}
+
+.screen div {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: right;
+    flex: 1;
+    font-size: 15px;
+    padding-right: 5px;
+}
+
+#lastOperation {
+    font-size: 10px;
+}
 
 button {
-    border-radius: 5px;
-    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
+.btn-red {
+    background-color: var(--btn-red);
+}
+
+.btn-red:hover {
+    background-color: var(--btn-red-hover);
+}
+
+.btn-blue {
+    background-color: var(--btn-blue);
+}
+
+.btn-blue:hover {
+    background-color: var(--btn-blue-hover);
+}
+
+.btn {
+    background-color: var(--btn);
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.screen {
+    box-shadow: 1px 1px 5px #8d8d8d;
 }

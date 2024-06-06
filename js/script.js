@@ -1,5 +1,4 @@
-// CSS DYNAMIC STYLING
-
+//  ------- CSS DYNAMIC STYLING -------
 function elementStyling() {
   // ELEMENT VARIABLES
   const elements = {
@@ -7,11 +6,12 @@ function elementStyling() {
     buttonContainer: document.querySelector(".button-container"),
     bigButtonsContainer: document.querySelector(".row.big-keys"),
     rows: document.querySelectorAll(".row"),
-    result: document.querySelector(".result"),
+    row1: document.querySelector(".row.one"),
+    screen: document.querySelector(".screen"),
     buttons: document.querySelectorAll("button"),
     bigButtons: document.querySelectorAll(".big-btn"),
   };
-
+  elements.screenDivs = document.querySelectorAll("div");
   // DIMENSION INITIALIZATION
   const dimensions = {
     width: 200,
@@ -42,10 +42,24 @@ function elementStyling() {
     return divElements.length;
   }
 
+  function countAllChildElements(parentElement) {
+    if (!parentElement) {
+      console.error("Parent element is not provided or does not exist.");
+      return 0;
+    }
+    return parentElement.children.length;
+  }
+
   // Calculate new dimensions after defining initial dimensions
   const numberOfRows = countDivsInClass(elements.buttonContainer, "row");
-  dimensions.buttonWidth = (dimensions.width - dimensions.gap * (4 - 1)) / 4;
-  dimensions.buttonHeight = dimensions.buttonWidth;
+  const numberOfColumns = countAllChildElements(elements.row1);
+  console.log(numberOfColumns);
+
+  dimensions.buttonWidth =
+    (dimensions.width - dimensions.gap * (numberOfColumns - 1)) /
+    numberOfColumns;
+  dimensions.buttonHeight =
+    (dimensions.width - dimensions.gap * (numberOfRows - 1)) / numberOfRows;
 
   //containers  styles
 
@@ -56,9 +70,21 @@ function elementStyling() {
     gap: `${dimensions.gap}px`,
   });
 
-  setStyles(elements.bigButtonsContainer, {
-    width: `${dimensions.width}px`,
-    height: `${dimensions.height / 4}px`,
+  // input and screen styling
+  dimensions.screenWidth =
+    dimensions.buttonWidth * numberOfColumns +
+    dimensions.gap * (numberOfColumns - 1);
+  dimensions.screenHeight = dimensions.buttonHeight * 2;
+
+  setStyles(elements.screen, {
+    width: `${dimensions.screenWidth}px`,
+    height: `${dimensions.screenHeight}px`,
+    margin: `${dimensions.gap}px`,
+  });
+
+  multiSetStyle(elements.screenDivs, {
+    width: `${(dimensions.screenwidth - dimensions.gap * 2) / 2}px`,
+    height: `${(dimensions.screenheight - dimensions.gap * 2) / 2}px`,
   });
 
   // button styles
@@ -80,3 +106,18 @@ function elementStyling() {
   });
 }
 elementStyling();
+
+// --------------- logic ---------------
+
+// buttons and variables
+
+const variables = {
+  clear: document.querySelector("#clearBtn"),
+  delete: document.querySelector("#deleteBtn"),
+  numbers: document.querySelectorAll("[data-number]"),
+  operators: document.querySelectorAll("[data-operator]"),
+  equals: document.querySelector("#equalsBtn"),
+  point: document.querySelector("#pointBtn"),
+  lastOperator: document.querySelector("#lastOperation"),
+  currentOperation: document.querySelector("#currentOperation"),
+};
