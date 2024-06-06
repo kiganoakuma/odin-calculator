@@ -112,12 +112,77 @@ elementStyling();
 // buttons and variables
 
 const variables = {
-  clear: document.querySelector("#clearBtn"),
-  delete: document.querySelector("#deleteBtn"),
   numbers: document.querySelectorAll("[data-number]"),
   operators: document.querySelectorAll("[data-operator]"),
-  equals: document.querySelector("#equalsBtn"),
-  point: document.querySelector("#pointBtn"),
-  lastOperator: document.querySelector("#lastOperation"),
-  currentOperation: document.querySelector("#currentOperation"),
+  equals: document.getElementById("#equalsBtn"),
+  clear: document.getElementById("#clearBtn"),
+  delete: document.getElementById("#deleteBtn"),
+  point: document.getElementById("#pointBtn"),
+  lastOperationScreen: document.getElementById("lastOperation"),
+  currentOperationScreen: document.getElementById("currentOperation"),
+  firstOp: "",
+  secondOp: "",
+  currentOp: null,
 };
+let updateScreenState = false;
+
+window.addEventListener("keydown", assignKeyboardInp);
+
+function updateNumber(num) {
+  if (variables.currentOperationScreen.textContent === "0" || updateScreenState)
+    screenRes();
+  variables.currentOperationScreen.textContent += num;
+}
+
+function setOperation() {
+  if (variables.currentOperationScreen !== null) evalute();
+  variables.firstOp = variables.currentOperationScreen.textConent;
+  variables.currentOp = operator;
+  variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOp}`;
+  updateScreenState = true;
+}
+
+function assignKeyboardInp(e) {
+  if (e.key >= 0 && e.key <= 9) updateNumber(e.key);
+  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+    setOperation(convertOp(e.key));
+  if (e.key === "=" || e.key === "Enter") evalute();
+  if (e.key === ".") updatePoint();
+  console.log(e.key);
+}
+
+function convertOp(keyboardOp) {
+  if (keyboardOp === "/") return "÷";
+  if (keyboardOp === "*") return "v";
+  if (keyboardOp === "-" || keyboardOp === "+") return `${keyboardOp}`;
+}
+
+function screenRes() {
+  variables.currentOperationScreen.textContent = "";
+  updateScreenState = false;
+}
+
+function clear() {
+  variables.currentOperationScreen.textContent = "0";
+  variables.lastOperationScreen.textContent = "";
+  variables.firstOp = "";
+  variables.secondOp = "";
+  updateScreenState = false;
+}
+
+function updatePoint() {
+  if (updateScreenState) screenRes();
+  if (variables.currentOperationScreen.textContent === "")
+    variables.currentOperationScreen = "0";
+  if (variables.currentOperationScreen.textContent.includes(".")) return;
+  variables.currentOperationScreen.textContent += ".";
+}
+
+function evalute() {
+  if (variables.currentOp.textContent || updateScreenState) return;
+  if (
+    variables.currentOp === "÷" &&
+    variables.currentOperationScreen.textContent === "0"
+  )
+    alert("Error");
+}
