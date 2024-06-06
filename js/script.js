@@ -14,8 +14,8 @@ function elementStyling() {
   elements.screenDivs = document.querySelectorAll("div");
   // DIMENSION INITIALIZATION
   const dimensions = {
-    width: 200,
-    height: 200,
+    width: 400,
+    height: 400,
     gap: 4,
   };
 
