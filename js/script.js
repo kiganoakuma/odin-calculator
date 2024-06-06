@@ -114,10 +114,10 @@ elementStyling();
 const variables = {
   numbers: document.querySelectorAll("[data-number]"),
   operators: document.querySelectorAll("[data-operator]"),
-  equals: document.getElementById("#equalsBtn"),
-  clear: document.getElementById("#clearBtn"),
-  delete: document.getElementById("#deleteBtn"),
-  point: document.getElementById("#pointBtn"),
+  equals: document.getElementById("equalsBtn"),
+  clear: document.getElementById("clearBtn"),
+  delete: document.getElementById("deleteBtn"),
+  point: document.getElementById("pointBtn"),
   lastOperationScreen: document.getElementById("lastOperation"),
   currentOperationScreen: document.getElementById("currentOperation"),
   firstOp: "",
@@ -127,6 +127,18 @@ const variables = {
 let updateScreenState = false;
 
 window.addEventListener("keydown", assignKeyboardInp);
+variables.equals.addEventListener("click", evalute);
+variables.delete.addEventListener("click", deleteNum);
+variables.clear.addEventListener("click", clear);
+variables.point.addEventListener("click", updatePoint);
+
+variables.numbers.forEach((button) =>
+  button.addEventListener("click", () => updateNumber(button.textContent))
+);
+
+variables.operators.forEach((button) =>
+  button.addEventListener("click", () => setOperation(button.textContent))
+);
 
 function updateNumber(num) {
   if (variables.currentOperationScreen.textContent === "0" || updateScreenState)
@@ -134,9 +146,9 @@ function updateNumber(num) {
   variables.currentOperationScreen.textContent += num;
 }
 
-function setOperation() {
+function setOperation(operator) {
   if (variables.currentOperationScreen !== null) evalute();
-  variables.firstOp = variables.currentOperationScreen.textConent;
+  variables.firstOp = variables.currentOperationScreen.textContent;
   variables.currentOp = operator;
   variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOp}`;
   updateScreenState = true;
@@ -148,12 +160,13 @@ function assignKeyboardInp(e) {
     setOperation(convertOp(e.key));
   if (e.key === "=" || e.key === "Enter") evalute();
   if (e.key === ".") updatePoint();
-  console.log(e.key);
+  if (e.key === "Backspace") deleteNum();
+  if (e.key === "Escape") clear();
 }
 
 function convertOp(keyboardOp) {
   if (keyboardOp === "/") return "÷";
-  if (keyboardOp === "*") return "v";
+  if (keyboardOp === "*") return "×";
   if (keyboardOp === "-" || keyboardOp === "+") return `${keyboardOp}`;
 }
 
@@ -167,7 +180,11 @@ function clear() {
   variables.lastOperationScreen.textContent = "";
   variables.firstOp = "";
   variables.secondOp = "";
-  updateScreenState = false;
+}
+
+function deleteNum() {
+  variables.currentOperationScreen.textContent =
+    variables.currentOperationScreen.textContent.slice(0, -1);
 }
 
 function updatePoint() {
@@ -179,7 +196,7 @@ function updatePoint() {
 }
 
 function evalute() {
-  if (variables.currentOp.textContent || updateScreenState) return;
+  if (variables.currentOp === null || updateScreenState) return;
   if (
     variables.currentOp === "÷" &&
     variables.currentOperationScreen.textContent === "0"
