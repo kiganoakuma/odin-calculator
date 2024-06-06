@@ -11,53 +11,38 @@
     <section class="header">Odin Calculator</section>
     <div class="container">
       <input type="text" class="result" />
-      <div id="entry-buttons">
-        <div class="first row">
-          <input type="button" name="" value="&radic;" class="global normal" />
-          <input type="button" name="" value="(" class="global normal" />
-          <input type="button" name="" value=")" class="global normal" />
-          <input type="button" name="" value="%" class="global normal" />
+      <div class="row big-keys">
+        <button onclick="this.blur();" class="big-btn btn-red" id="clearBtn">
+          CLEAR
+        </button>
+        <button onclick="this.blur();" class="big-btn btn-grey" id="deleteBtn">
+          DELETE
+        </button>
+      </div>
+      <div class="button-container">
+        <div class="row 1">
+          <button onclick="this.blur();" class="btn" data-number>7</button>
+          <button onclick="this.blur();" class="btn" data-number>8</button>
+          <button onclick="this.blur();" class="btn" data-number>9</button>
+          <button onclick="this.blur();" class="btn" data-operator>÷</button>
         </div>
-        <div class="second row">
-          <input type="button" name="" value="7" class="global normal" />
-          <input type="button" name="" value="8" class="global normal" />
-          <input type="button" name="" value="9" class="global normal" />
-          <input type="button" name="" value="/" class="global normal" />
+        <div class="row 2">
+          <button onclick="this.blur();" class="btn" data-number>4</button>
+          <button onclick="this.blur();" class="btn" data-number>5</button>
+          <button onclick="this.blur();" class="btn" data-number>6</button>
+          <button onclick="this.blur();" class="btn" data-operator>×</button>
         </div>
-        <div class="third row">
-          <input type="button" name="" value="4" class="global normal" />
-          <input type="button" name="" value="5" class="global normal" />
-          <input type="button" name="" value="6" class="global normal" />
-          <input type="button" name="" value="X" class="global normal" />
+        <div class="row 3">
+          <button onclick="this.blur();" class="btn" data-number>1</button>
+          <button onclick="this.blur();" class="btn" data-number>2</button>
+          <button onclick="this.blur();" class="btn" data-number>3</button>
+          <button onclick="this.blur();" class="btn" data-operator>−</button>
         </div>
-        <div class="fourth row">
-          <input type="button" name="" value="1" class="global normal" />
-          <input type="button" name="" value="2" class="global normal" />
-          <input type="button" name="" value="3" class="global normal" />
-          <input type="button" name="" value="-" class="global normal" />
-        </div>
-        <div class="conflict">
-          <div class="left">
-            <div class="top">
-              <input type="button" name="" value="0" class="big" />
-              <input type="button" name="" value="." class="small" />
-            </div>
-            <div class="bottom">
-              <input
-                type="button"
-                name=""
-                value="Del"
-                class="red small white-text top-margin"
-              />
-              <input
-                type="button"
-                name=""
-                value="="
-                class="green white-text big top-margin"
-              />
-            </div>
-          </div>
-          <input type="button" name="" value="+" class="global grey plus" />
+        <div class="row 4">
+          <button onclick="this.blur();" class="btn" id="pointBtn">.</button>
+          <button onclick="this.blur();" class="btn" data-number>0</button>
+          <button onclick="this.blur();" class="btn" id="equalsBtn">=</button>
+          <button onclick="this.blur();" class="btn" data-operator>+</button>
         </div>
       </div>
     </div>
