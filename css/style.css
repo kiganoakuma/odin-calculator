@@ -119,3 +119,15 @@ button {
 .screen {
     box-shadow: 1px 1px 5px #8d8d8d;
 }
+
+footer {
+    margin: 30px;
+}
+
+footer * {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#github-page{
+    text-decoration: none;
+}

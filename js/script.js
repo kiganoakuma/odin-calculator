@@ -122,7 +122,7 @@ const variables = {
   currentOperationScreen: document.getElementById("currentOperation"),
   firstOp: "",
   secondOp: "",
-  currentOp: null,
+  currentOperation: null,
 };
 let updateScreenState = false;
 
@@ -149,8 +149,9 @@ function updateNumber(num) {
 function setOperation(operator) {
   if (variables.currentOperationScreen !== null) evalute();
   variables.firstOp = variables.currentOperationScreen.textContent;
-  variables.currentOp = operator;
-  variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOp}`;
+  variables.currentOperation = operator;
+  variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOperation}`;
+  variables.currentOperationScreen.textContent = "";
   updateScreenState = true;
 }
 
@@ -176,10 +177,7 @@ function screenRes() {
 }
 
 function clear() {
-  variables.currentOperationScreen.textContent = "0";
-  variables.lastOperationScreen.textContent = "";
-  variables.firstOp = "";
-  variables.secondOp = "";
+  location.reload();
 }
 
 function deleteNum() {
@@ -196,10 +194,54 @@ function updatePoint() {
 }
 
 function evalute() {
-  if (variables.currentOp === null || updateScreenState) return;
+  if (variables.currentOperation === null || updateScreenState) return;
   if (
-    variables.currentOp === "÷" &&
+    variables.currentOperation === "÷" &&
     variables.currentOperationScreen.textContent === "0"
   )
     alert("Error");
+  variables.secondOp = variables.currentOperationScreen.textContent;
+  variables.currentOperationScreen.textContent = roundResult(
+    operate(variables.currentOperation, variables.firstOp, variables.secondOp)
+  );
+  variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOperation} ${variables.secondOp} =`;
+  variables.currentOperation = null;
+}
+
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function divide(a, b) {
+  return a / b;
+}
+
+function operate(operator, a, b) {
+  a = Number(a);
+  b = Number(b);
+  switch (operator) {
+    case "+":
+      return add(a, b);
+    case "-":
+      return subtract(a, b);
+    case "×":
+      return multiply(a, b);
+    case "÷":
+      if (b === 0) return null;
+      else return divide(a, b);
+    default:
+      nill;
+  }
 }
