@@ -246,6 +246,6 @@ function operate(operator, a, b) {
       if (b === 0) return null;
       else return divide(a, b);
     default:
-      nill;
+      null;
   }
 }
