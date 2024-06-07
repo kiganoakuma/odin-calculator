@@ -140,14 +140,28 @@ variables.operators.forEach((button) =>
   button.addEventListener("click", () => setOperation(button.textContent))
 );
 
+function toScientificNotation(num) {
+  if (num === 0) return "0";
+  const exponent = Math.floor(Math.log10(Math.abs(num)));
+  const mantissa = num / Math.pow(10, exponent);
+  return `${mantissa.toFixed(4)}e${exponent}`;
+}
+
 function updateNumber(num) {
   if (variables.currentOperationScreen.textContent === "0" || updateScreenState)
     screenRes();
-  variables.currentOperationScreen.textContent += num;
+  const newValue = variables.currentOperationScreen.textContent + num;
+  if (newValue.length > 9) {
+    variables.currentOperationScreen.textContent = toScientificNotation(
+      Number(newValue)
+    );
+  } else {
+    variables.currentOperationScreen.textContent = newValue;
+  }
 }
 
 function setOperation(operator) {
-  if (variables.currentOperationScreen !== null) evalute();
+  if (variables.currentOperationScreen.textContent !== "") evalute();
   variables.firstOp = variables.currentOperationScreen.textContent;
   variables.currentOperation = operator;
   variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOperation}`;
@@ -192,7 +206,7 @@ function deleteNum() {
 function updatePoint() {
   if (updateScreenState) screenRes();
   if (variables.currentOperationScreen.textContent === "")
-    variables.currentOperationScreen = "0";
+    variables.currentOperationScreen.textContent = "0";
   if (variables.currentOperationScreen.textContent.includes(".")) return;
   variables.currentOperationScreen.textContent += ".";
 }
@@ -205,9 +219,16 @@ function evalute() {
   )
     alert("Error");
   variables.secondOp = variables.currentOperationScreen.textContent;
-  variables.currentOperationScreen.textContent = roundResult(
-    operate(variables.currentOperation, variables.firstOp, variables.secondOp)
+  const result = operate(
+    variables.currentOperation,
+    variables.firstOp,
+    variables.secondOp
   );
+  if (result.toString().length > 9) {
+    variables.currentOperationScreen.textContent = toScientificNotation(result);
+  } else {
+    variables.currentOperationScreen.textContent = roundResult(result);
+  }
   variables.lastOperationScreen.textContent = `${variables.firstOp} ${variables.currentOperation} ${variables.secondOp} =`;
   variables.currentOperation = null;
 }
@@ -246,6 +267,6 @@ function operate(operator, a, b) {
       if (b === 0) return null;
       else return divide(a, b);
     default:
-      null;
+      return null;
   }
 }
