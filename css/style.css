@@ -14,7 +14,7 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    font-size: 25px;
+    font-size: 20px;
 
 }
 
@@ -80,12 +80,12 @@ button,
     display: flex;
     justify-content: right;
     flex: 1;
-    font-size: 30px;
+    font-size: 25px;
     padding-right: 5px;
 }
 
 #lastOperation {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 button {
@@ -131,4 +131,9 @@ footer * {
 
 #github-page{
     text-decoration: none;
+}
+
+h3 {
+    font-size: 15px;
+    word-spacing: 1px;
 }
