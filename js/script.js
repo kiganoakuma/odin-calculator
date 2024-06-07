@@ -167,7 +167,7 @@ function assignKeyboardInp(e) {
 
 function convertOp(keyboardOp) {
   if (keyboardOp === "/") return "÷";
-  if (keyboardOp === "*") return "×";
+  if (keyboardOp === "*") return "x";
   if (keyboardOp === "-" || keyboardOp === "+") return `${keyboardOp}`;
 }
 
@@ -240,7 +240,7 @@ function operate(operator, a, b) {
       return add(a, b);
     case "-":
       return subtract(a, b);
-    case "×":
+    case "x":
       return multiply(a, b);
     case "÷":
       if (b === 0) return null;
