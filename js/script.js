@@ -144,6 +144,7 @@ variables.operators.forEach((button) =>
 
 function toScientificNotation(num) {
   if (num === 0) return "0";
+  if (num === 1) return "1";
   const exponent = Math.floor(Math.log10(Math.abs(num)));
   const mantissa = num / Math.pow(10, exponent);
   return `${mantissa.toFixed(5)}e${exponent}`;
