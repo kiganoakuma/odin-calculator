@@ -15,7 +15,7 @@ function elementStyling() {
   // DIMENSION INITIALIZATION
   const dimensions = {
     width: 200,
-    height: 200,
+    height: 250,
     gap: 4,
   };
 
@@ -59,7 +59,7 @@ function elementStyling() {
     (dimensions.width - dimensions.gap * (numberOfColumns - 1)) /
     numberOfColumns;
   dimensions.buttonHeight =
-    (dimensions.width - dimensions.gap * (numberOfRows - 1)) / numberOfRows;
+    (dimensions.height - dimensions.gap * (numberOfRows - 1)) / numberOfRows;
 
   //containers  styles
 
@@ -177,7 +177,11 @@ function screenRes() {
 }
 
 function clear() {
-  location.reload();
+  variables.currentOperationScreen.textContent = "";
+  variables.lastOperationScreen.textContent = "";
+  variables.firstOp = "";
+  variables.secondOp = "";
+  variables.currentOperation = null;
 }
 
 function deleteNum() {
