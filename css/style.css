@@ -92,7 +92,7 @@ button,
 
 button {
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.4s;
 }
 
 .btn-red {

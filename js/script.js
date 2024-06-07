@@ -150,14 +150,23 @@ function toScientificNotation(num) {
 }
 
 function updateNumber(num) {
-  if (variables.currentOperationScreen.textContent === "0" || updateScreenState)
-    screenRes();
-  const newValue = Number(variables.currentOperationScreen.textContent + num);
-  if (newValue > 999999999) {
-    variables.currentOperationScreen.textContent =
-      toScientificNotation(newValue);
+  if (variables.currentOperationScreen.textContent.includes("e")) {
+    alert("digit limit exceeded");
+    clear();
   } else {
-    variables.currentOperationScreen.textContent = newValue;
+    if (
+      variables.currentOperationScreen.textContent === "0" ||
+      updateScreenState
+    )
+      screenRes();
+
+    const newValue = Number(variables.currentOperationScreen.textContent + num);
+    if (newValue > 999999999) {
+      variables.currentOperationScreen.textContent =
+        toScientificNotation(newValue);
+    } else {
+      variables.currentOperationScreen.textContent = newValue;
+    }
   }
 }
 
