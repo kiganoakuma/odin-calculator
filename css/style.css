@@ -1,10 +1,14 @@
 :root {
     --btn: #696969;
     --btn-hover: #898989;
+    --btn-click: #525252;
     --btn-red: #d8425b;
     --btn-red-hover: #ef4a65;
+    --btnRed-click: #c13149e3;
     --btn-blue: #7155ff;
     --btn-blue-hover: #7c62ff;
+    --btnBlue--click: #5e46d6d4;
+    --txtBtn-click: rgb(209, 209, 209);
 
 }
 
@@ -102,6 +106,11 @@ button {
     background-color: var(--btn-red-hover);
 }
 
+.btn-red:active {
+    background-color: var(--btnRed-click);
+    color: var(--txtBtn-click);
+}
+
 .btn-blue {
     background-color: var(--btn-blue);
 }
@@ -110,12 +119,22 @@ button {
     background-color: var(--btn-blue-hover);
 }
 
+.btn-blue:active {
+    background-color: var(--btnBlue--click);
+    color: var(--txtBtn-click);
+}
+
 .btn {
     background-color: var(--btn);
 }
 
 .btn:hover {
     background-color: var(--btn-hover);
+}
+
+.btn:active {
+    background-color: var(--btn-click);
+    color: var(--txtBtn-click);
 }
 
 .screen {

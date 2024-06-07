@@ -137,14 +137,16 @@ variables.numbers.forEach((button) =>
 );
 
 variables.operators.forEach((button) =>
-  button.addEventListener("click", () => setOperation(button.textContent))
+  button.addEventListener("click", () =>
+    setOperation(button.textContent, button)
+  )
 );
 
 function toScientificNotation(num) {
   if (num === 0) return "0";
   const exponent = Math.floor(Math.log10(Math.abs(num)));
   const mantissa = num / Math.pow(10, exponent);
-  return `${mantissa.toFixed(4)}e${exponent}`;
+  return `${mantissa.toFixed(5)}e${exponent}`;
 }
 
 function updateNumber(num) {
@@ -160,7 +162,11 @@ function updateNumber(num) {
   }
 }
 
-function setOperation(operator) {
+function buttonClick(button) {
+  button.style.backgroundColor = "var(--btn)";
+}
+
+function setOperation(operator, button) {
   if (variables.currentOperationScreen.textContent !== "") evalute();
   variables.firstOp = variables.currentOperationScreen.textContent;
   variables.currentOperation = operator;
@@ -224,7 +230,7 @@ function evalute() {
     variables.firstOp,
     variables.secondOp
   );
-  if (result.toString().length > 9) {
+  if (result.toString().length > 10) {
     variables.currentOperationScreen.textContent = toScientificNotation(result);
   } else {
     variables.currentOperationScreen.textContent = roundResult(result);
